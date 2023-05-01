@@ -4,6 +4,7 @@ import com.deipayandash.kentaurus.DistributedDatabaseSlave.model.NodeModel;
 import com.deipayandash.kentaurus.DistributedDatabaseSlave.model.response.NodeAction;
 import com.deipayandash.kentaurus.DistributedDatabaseSlave.model.response.NodeWordsData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class NodeService {
 	@Autowired
 	private NodeModel nodeModel;
 
-	public int getNodeId(){
+	public String getNodeId(){
 		return nodeModel.getNodeId();
 	}
 

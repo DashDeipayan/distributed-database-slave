@@ -1,5 +1,6 @@
 package com.deipayandash.kentaurus.DistributedDatabaseSlave.controller;
 
+import com.deipayandash.kentaurus.DistributedDatabaseSlave.model.WordsModel;
 import com.deipayandash.kentaurus.DistributedDatabaseSlave.model.response.NodeAction;
 import com.deipayandash.kentaurus.DistributedDatabaseSlave.model.response.NodeIdData;
 import com.deipayandash.kentaurus.DistributedDatabaseSlave.model.response.NodeWordsData;
@@ -19,8 +20,8 @@ public class SlaveController {
 	private NodeService nodeService;
 	@GetMapping("/node")
 	public ResponseEntity<NodeIdData> getNodeId(){
-		if(!nodeService.getNodeStatus()) return new ResponseEntity<>(new NodeIdData("Node is inactive", -1),HttpStatus.BAD_REQUEST);
-		return new ResponseEntity<>(new NodeIdData("Node Data fetched successfully", nodeService.getNodeId()), HttpStatus.OK);
+		if(!nodeService.getNodeStatus()) return new ResponseEntity<>(new NodeIdData("Node is inactive", ""),HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(new NodeIdData("Node Id fetched successfully", nodeService.getNodeId()), HttpStatus.OK);
 	}
 
 	@PatchMapping("/node/{activate}")
@@ -52,9 +53,9 @@ public class SlaveController {
 	}
 
 	@PostMapping("/words")
-	public ResponseEntity<String> addWords(@RequestBody List<String> words){
+	public ResponseEntity<String> addWords(@RequestBody WordsModel words){
 		if(!nodeService.getNodeStatus()) return new ResponseEntity<>("Node is inactive", HttpStatus.BAD_REQUEST);
-		NodeAction nodeAction = nodeService.addWords(words);
+		NodeAction nodeAction = nodeService.addWords(words.getWords());
 		return new ResponseEntity<>(nodeAction.getMessage(),nodeAction.getCode());
 	}
 }

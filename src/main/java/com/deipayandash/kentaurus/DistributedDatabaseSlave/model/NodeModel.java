@@ -1,5 +1,7 @@
 package com.deipayandash.kentaurus.DistributedDatabaseSlave.model;
 
+import io.github.cdimascio.dotenv.Dotenv;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -11,7 +13,7 @@ import java.util.Set;
 public class NodeModel {
 
 	private final int MAX_WORDS_IN_NODE = 25;
-	private int NodeId;
+	private String NodeId;
 
 	private String NodeAddress;
 
@@ -56,19 +58,20 @@ public class NodeModel {
 		isActive = active;
 	}
 
-	public NodeModel(int nodeId, String nodeAddress) {
-		NodeId = nodeId;
-		NodeAddress = nodeAddress;
+	public NodeModel(Dotenv dotenv) {
+		NodeId = dotenv.get("NODE_ID");
+		NodeAddress = dotenv.get("NODE_ADDRESS");
 		this.wordsSet = new HashSet<>();
 		this.words = new LinkedList<>();
+		isActive=true;
 	}
 
-	public int getNodeId() {
+	public String getNodeId() {
 		return NodeId;
 	}
 
 
-	public void setNodeId(int nodeId) {
+	public void setNodeId(String nodeId) {
 		NodeId = nodeId;
 	}
 

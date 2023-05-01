@@ -6,8 +6,11 @@ import java.util.List;
 
 @Component
 public class NodeWordsData {
-	private final String message;
-	private final List<String> words;
+	private String message;
+	private List<String> words;
+
+	public NodeWordsData() {
+	}
 
 	public NodeWordsData(String message, List<String> words) {
 		this.message = message;

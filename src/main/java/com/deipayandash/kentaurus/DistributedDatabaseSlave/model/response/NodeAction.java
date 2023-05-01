@@ -5,8 +5,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class NodeAction {
-	private final String message;
-	private final HttpStatus code;
+	private String message;
+	private HttpStatus code;
+
+	public NodeAction() {
+	}
 
 	public NodeAction(String message, HttpStatus code) {
 		this.message = message;

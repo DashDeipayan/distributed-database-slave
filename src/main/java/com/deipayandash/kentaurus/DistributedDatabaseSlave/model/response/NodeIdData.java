@@ -4,19 +4,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class NodeIdData {
-	private final String message;
-	private final int nodeId;
+	private String message;
+	private String nodeId;
 
-	public NodeIdData(String message, int nodeId) {
+	public NodeIdData(String message, String nodeId) {
 		this.message = message;
 		this.nodeId = nodeId;
+	}
+
+	public NodeIdData() {
 	}
 
 	public String getMessage() {
 		return message;
 	}
 
-	public int getNodeId() {
+	public String getNodeId() {
 		return nodeId;
 	}
 }
